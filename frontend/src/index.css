@@ -1,0 +1,486 @@
+/* ============================================
+   SISTEMA PAIT - SIERRA STOCK
+   Sistema de Gestión Comercial
+   Paleta: Naranja + Gris
+   ============================================ */
+
+/* ============================================
+   VARIABLES CSS GLOBALES
+   ============================================ */
+:root {
+  /* Colores principales - Dorado (Premium) */
+  --color-primario: #caa462;
+  --color-primario-hover: #e0bc7a;
+  --color-primario-claro: #d4b27a;
+  --color-primario-muy-claro: #e8d5b5;
+  --color-primario-oscuro: #a68341;
+
+  /* Colores de fondo - Oscuro Premium */
+  --color-fondo: #111111;
+  --color-fondo-claro: #1a1a1a;
+  --color-fondo-card: #1a1a1a;
+  --color-fondo-input: #222222;
+  --color-fondo-hover: #2a2a2a;
+
+  /* Colores de texto */
+  --color-texto: #ffffff;
+  --color-texto-secundario: #cccccc;
+  --color-texto-muted: #999999;
+  --color-texto-placeholder: #666666;
+
+  /* Colores de borde */
+  --color-borde: #222222;
+  --color-borde-claro: #333333;
+  --color-borde-input: #444444;
+
+  /* Colores de estado */
+  --color-exito: #22c55e;
+  --color-exito-fondo: rgba(34, 197, 94, 0.1);
+  --color-error: #ef4444;
+  --color-error-fondo: rgba(239, 68, 68, 0.1);
+  --color-advertencia: #eab308;
+  --color-advertencia-fondo: rgba(234, 179, 8, 0.1);
+  --color-info: #3b82f6;
+  --color-info-fondo: rgba(59, 130, 246, 0.1);
+
+  /* Sombras */
+  --sombra-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --sombra-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --sombra-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --sombra-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+
+  /* Bordes redondeados */
+  --radio-sm: 6px;
+  --radio-md: 10px;
+  --radio-lg: 14px;
+  --radio-xl: 20px;
+  --radio-full: 9999px;
+
+  /* Espaciado */
+  --espaciado-xs: 4px;
+  --espaciado-sm: 8px;
+  --espaciado-md: 16px;
+  --espaciado-lg: 24px;
+  --espaciado-xl: 32px;
+  --espaciado-2xl: 48px;
+
+  /* Transiciones */
+  --transicion-rapida: 150ms ease;
+  --transicion-normal: 250ms ease;
+  --transicion-lenta: 350ms ease;
+
+  /* Tipografía */
+  --fuente-principal: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  --fuente-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+
+  /* Tamaños de fuente */
+  --texto-xs: 0.75rem;
+  --texto-sm: 0.875rem;
+  --texto-base: 1rem;
+  --texto-lg: 1.125rem;
+  --texto-xl: 1.25rem;
+  --texto-2xl: 1.5rem;
+  --texto-3xl: 1.875rem;
+  --texto-4xl: 2.25rem;
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+
+  /* Anchos máximos */
+  --ancho-sm: 640px;
+  --ancho-md: 768px;
+  --ancho-lg: 1024px;
+  --ancho-xl: 1280px;
+  --ancho-2xl: 1536px;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   RESET Y BASE
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  font-size: var(--texto-base);
+  line-height: 1.5;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  overflow-x: hidden;
+}
+
+#root,
+body,
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   TIPOGRAFÍA
+   ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-texto);
+}
+
+h1 {
+  font-size: var(--texto-3xl);
+}
+
+h2 {
+  font-size: var(--texto-2xl);
+}
+
+h3 {
+  font-size: var(--texto-xl);
+}
+
+h4 {
+  font-size: var(--texto-lg);
+}
+
+h5 {
+  font-size: var(--texto-base);
+}
+
+h6 {
+  font-size: var(--texto-sm);
+}
+
+p {
+  margin-bottom: var(--espaciado-md);
+  color: var(--color-texto-secundario);
+}
+
+a {
+  color: var(--color-primario);
+  text-decoration: none;
+  transition: color var(--transicion-rapida);
+}
+
+a:hover {
+  color: var(--color-primario-hover);
+}
+
+/* ============================================
+   FORMULARIOS - BASE
+   ============================================ */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-texto-placeholder);
+}
+
+/* Estilos para inputs con autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-fondo-input) inset !important;
+  -webkit-text-fill-color: var(--color-texto) !important;
+  border-color: var(--color-borde-input) !important;
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADO
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-fondo);
+  border-radius: var(--radio-sm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-borde-claro);
+  border-radius: var(--radio-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-texto-muted);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-borde-claro) var(--color-fondo);
+}
+
+/* ============================================
+   SELECCIÓN DE TEXTO
+   ============================================ */
+::selection {
+  background-color: var(--color-primario);
+  color: white;
+}
+
+/* ============================================
+   UTILIDADES GENERALES
+   ============================================ */
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.truncar {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MEDIA QUERIES BASE
+   ============================================ */
+
+/* Móvil pequeño (hasta 480px) */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: var(--texto-2xl);
+  }
+
+  h2 {
+    font-size: var(--texto-xl);
+  }
+
+  h3 {
+    font-size: var(--texto-lg);
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Tablet grande (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Desktop (1025px+) */
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Soporte para modo oscuro del sistema (por si acaso) */
+@media (prefers-color-scheme: dark) {
+  /* Ya estamos en modo oscuro por defecto */
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   UTILIDADES DE ESPACIADO RESPONSIVE
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: var(--ancho-xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--espaciado-md);
+  padding-right: var(--espaciado-md);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: var(--espaciado-sm);
+    padding-right: var(--espaciado-sm);
+  }
+}
+
+/* ============================================
+   LOGO / BRANDING
+   ============================================ */
+.logo-sierra-stock {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+}
+
+.logo-sierra-stock svg,
+.logo-sierra-stock img {
+  height: 40px;
+  width: auto;
+}
+
+.logo-sierra-stock span {
+  font-size: var(--texto-xl);
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+@media (max-width: 480px) {
+
+  .logo-sierra-stock svg,
+  .logo-sierra-stock img {
+    height: 32px;
+  }
+
+  .logo-sierra-stock span {
+    font-size: var(--texto-lg);
+  }
+}

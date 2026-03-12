@@ -1,0 +1,381 @@
+/* Estilos Profesionales para Gestión de Stock FEFO - Sierra Stock */
+
+.asignacion-fefo-container {
+    padding: var(--espaciado-lg);
+    background: var(--color-fondo);
+    min-height: 100vh;
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Grid Layout */
+.fefo-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--espaciado-lg);
+    align-items: start;
+}
+
+/* Sidebar: Buscador y Lista de Productos */
+.fefo-sidebar {
+    background: var(--color-fondo-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    padding: var(--espaciado-md);
+    height: calc(100vh - 160px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--sombra-lg);
+}
+
+.buscador-panel {
+    margin-bottom: var(--espaciado-md);
+}
+
+.terminal-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.terminal-input {
+    width: 100%;
+    background: var(--color-fondo-input);
+    border: 1px solid var(--color-borde-input);
+    border-radius: var(--radio-md);
+    padding: var(--espaciado-sm) var(--espaciado-md) var(--espaciado-sm) 2.5rem;
+    color: var(--color-texto);
+    font-size: var(--texto-sm);
+    transition: all var(--transicion-rapida);
+}
+
+.terminal-input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
+
+.search-icon-terminal {
+    position: absolute;
+    left: 0.8rem;
+    color: var(--color-texto-muted);
+}
+
+.productos-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: var(--espaciado-sm);
+    padding-right: var(--espaciado-xs);
+}
+
+.producto-item-terminal {
+    padding: var(--espaciado-md);
+    border-radius: var(--radio-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-borde);
+    margin-bottom: var(--espaciado-sm);
+    cursor: pointer;
+    transition: all var(--transicion-rapida);
+}
+
+.producto-item-terminal:hover {
+    background: var(--color-fondo-hover);
+    transform: translateX(4px);
+}
+
+.producto-item-terminal.active {
+    border-color: var(--color-primario);
+    background: rgba(249, 115, 22, 0.1);
+}
+
+.producto-info-mini h4 {
+    margin: 0;
+    font-size: var(--texto-sm);
+    color: var(--color-texto);
+    font-weight: 600;
+}
+
+.producto-info-mini span {
+    font-size: var(--texto-xs);
+    color: var(--color-texto-muted);
+}
+
+/* Main Detail Panel */
+.fefo-main-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-lg);
+}
+
+.terminal-wrapper {
+    background: var(--color-fondo-card);
+    border-radius: var(--radio-lg);
+    border: 1px solid var(--color-borde);
+    padding: var(--espaciado-xl);
+    position: relative;
+    box-shadow: var(--sombra-xl);
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Estilo de la "ventana" inspirado en el Dashboard */
+.terminal-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg) var(--radio-lg) 0 0;
+}
+
+.terminal-dots {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.terminal-dot.red {
+    background: #ef4444;
+}
+
+.terminal-dot.yellow {
+    background: #f59e0b;
+}
+
+.terminal-dot.green {
+    background: #10b981;
+}
+
+.terminal-content {
+    margin-top: 30px;
+    color: var(--color-texto-secundario);
+}
+
+.terminal-header-text {
+    color: var(--color-texto);
+    font-size: var(--texto-lg);
+    font-weight: 700;
+    margin-bottom: var(--espaciado-xl);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.terminal-ascii-box {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-md);
+    padding: var(--espaciado-lg);
+    margin-bottom: var(--espaciado-lg);
+}
+
+/* Status Lines */
+.status-line {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-md);
+    margin-bottom: var(--espaciado-sm);
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-indicator.green {
+    background: var(--color-exito);
+    box-shadow: 0 0 8px var(--color-exito-fondo);
+}
+
+.status-indicator.yellow {
+    background: var(--color-advertencia);
+    box-shadow: 0 0 8px var(--color-advertencia-fondo);
+}
+
+.status-indicator.red {
+    background: var(--color-error);
+    box-shadow: 0 0 8px var(--color-error-fondo);
+}
+
+.status-label {
+    font-weight: 600;
+    font-size: var(--texto-sm);
+    min-width: 80px;
+}
+
+.status-label.green {
+    color: var(--color-exito);
+}
+
+.status-label.yellow {
+    color: var(--color-advertencia);
+}
+
+.status-label.red {
+    color: var(--color-error);
+}
+
+.terminal-divider {
+    height: 1px;
+    background: var(--color-borde);
+    margin: var(--espaciado-lg) 0;
+}
+
+.terminal-info-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-md);
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espaciado-md);
+}
+
+.info-icon {
+    font-size: 1.2rem;
+}
+
+.info-text strong {
+    color: var(--color-primario);
+    margin-right: 8px;
+    font-size: var(--texto-sm);
+}
+
+/* Cart / Action Panel */
+.cart-selection-panel {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: var(--radio-lg);
+    padding: var(--espaciado-lg);
+    border: 1px solid var(--color-borde);
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--espaciado-lg);
+}
+
+.cart-header h4 {
+    font-size: var(--texto-sm);
+    color: var(--color-primario);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.num-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-fondo-input);
+    padding: 6px 12px;
+    border-radius: var(--radio-md);
+    border: 1px solid var(--color-borde);
+}
+
+/* Buttons */
+.btn-terminal-primary {
+    background: var(--color-primario);
+    color: white;
+    border: none;
+    padding: var(--espaciado-md) var(--espaciado-xl);
+    border-radius: var(--radio-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transicion-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-sm);
+    width: 100%;
+    font-size: var(--texto-sm);
+}
+
+.btn-terminal-primary:hover {
+    background: var(--color-primario-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-md);
+}
+
+.btn-terminal-danger {
+    background: transparent;
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    border-radius: var(--radio-md);
+    cursor: pointer;
+    font-size: var(--texto-xs);
+    font-weight: 600;
+    transition: all var(--transicion-rapida);
+}
+
+.btn-terminal-danger:hover {
+    background: var(--color-error-fondo);
+}
+
+/* Mensajes */
+.mensaje {
+    margin-top: var(--espaciado-md);
+    padding: var(--espaciado-sm);
+    border-radius: var(--radio-md);
+    font-size: var(--texto-xs);
+    border: 1px solid transparent;
+}
+
+.mensaje.exito {
+    background: var(--color-exito-fondo);
+    color: var(--color-exito);
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+.mensaje.error {
+    background: var(--color-error-fondo);
+    color: var(--color-error);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.mensaje.advertencia {
+    background: var(--color-advertencia-fondo);
+    color: var(--color-advertencia);
+    border-color: rgba(234, 179, 8, 0.2);
+}
+
+/* Cursor & Animations */
+.cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background: var(--color-primario);
+    margin-left: 5px;
+    vertical-align: middle;
+    animation: pulse 1s infinite;
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+    .fefo-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .fefo-sidebar {
+        height: auto;
+        max-height: 350px;
+    }
+}

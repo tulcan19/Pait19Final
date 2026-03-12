@@ -1,0 +1,12 @@
+{
+  "name": "sistema-pait19",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run start --prefix backend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

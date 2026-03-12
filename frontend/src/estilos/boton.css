@@ -1,0 +1,87 @@
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: inherit;
+}
+
+.boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tamaños */
+.boton-pequeno {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.boton-mediano {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.boton-grande {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* Tipos */
+.boton-primario {
+  background: #3b82f6;
+  color: white;
+}
+
+.boton-primario:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.boton-secundario {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.boton-secundario:hover:not(:disabled) {
+  background: #d1d5db;
+}
+
+.boton-peligro {
+  background: #ef4444;
+  color: white;
+}
+
+.boton-peligro:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.boton-texto {
+  background: transparent;
+  color: #3b82f6;
+  padding: 8px 12px;
+}
+
+.boton-texto:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+/* Spinner para estado de carga */
+.boton-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

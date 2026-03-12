@@ -1,0 +1,4 @@
+src/paginas/Compras.tsx(6,1): error TS6133: 'puedeSubirImagenes' is declared but its value is never read.
+src/paginas/Compras.tsx(353,23): error TS2339: Property 'imagen' does not exist on type 'CarritoItem'.
+src/paginas/Compras.tsx(355,31): error TS2339: Property 'imagen' does not exist on type 'CarritoItem'.
+src/paginas/Movimientos.tsx(7,1): error TS6133: 'puedeSubirImagenes' is declared but its value is never read.

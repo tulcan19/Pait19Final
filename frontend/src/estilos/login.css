@@ -1,0 +1,645 @@
+/* ============================================
+   LOGIN - SIERRA STOCK
+   Pantalla de inicio de sesión responsive
+   ============================================ */
+
+.login-contenedor {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-fondo) 0%, var(--color-fondo-claro) 50%, var(--color-fondo) 100%);
+  padding: var(--espaciado-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de fondo decorativo */
+.login-contenedor::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+.login-card {
+  background: var(--color-fondo-card);
+  padding: var(--espaciado-xl);
+  border-radius: var(--radio-xl);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--sombra-xl);
+  border: 1px solid var(--color-borde);
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Logo y título */
+.login-header {
+  text-align: center;
+  margin-bottom: var(--espaciado-xl);
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--espaciado-md);
+  background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-primario-oscuro) 100%);
+  border-radius: var(--radio-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: var(--sombra-lg);
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: var(--espaciado-sm);
+  color: var(--color-texto);
+  font-size: var(--texto-2xl);
+  font-weight: 700;
+}
+
+.login-subtitulo {
+  text-align: center;
+  color: var(--color-texto-muted);
+  font-size: var(--texto-sm);
+  margin-bottom: 0;
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-md);
+}
+
+.login-campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xs);
+}
+
+.login-label {
+  font-size: var(--texto-sm);
+  font-weight: 500;
+  color: var(--color-texto-secundario);
+}
+
+.login-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-input-icon {
+  position: absolute;
+  left: var(--espaciado-md);
+  color: var(--color-texto-muted);
+  font-size: 1.1rem;
+  pointer-events: none;
+  transition: color var(--transicion-rapida);
+}
+
+.login-input {
+  width: 100%;
+  padding: var(--espaciado-md);
+  padding-left: calc(var(--espaciado-md) * 2 + 1.1rem);
+  border-radius: var(--radio-md);
+  border: 1px solid var(--color-borde-input);
+  background: var(--color-fondo-input);
+  color: var(--color-texto);
+  font-size: var(--texto-base);
+  transition: all var(--transicion-rapida);
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+.login-input:focus + .login-input-icon,
+.login-input-wrapper:focus-within .login-input-icon {
+  color: var(--color-primario);
+}
+
+.login-input::placeholder {
+  color: var(--color-texto-placeholder);
+}
+
+/* Botón de mostrar/ocultar contraseña */
+.login-toggle-password {
+  position: absolute;
+  right: var(--espaciado-md);
+  background: none;
+  border: none;
+  color: var(--color-texto-muted);
+  cursor: pointer;
+  padding: var(--espaciado-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transicion-rapida);
+}
+
+.login-toggle-password:hover {
+  color: var(--color-primario);
+}
+
+/* Error en campo */
+.login-input.error {
+  border-color: var(--color-error);
+}
+
+.login-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.login-error-texto {
+  font-size: var(--texto-xs);
+  color: var(--color-error);
+  margin-top: var(--espaciado-xs);
+}
+
+/* Botón de login */
+.login-boton {
+  width: 100%;
+  padding: var(--espaciado-md);
+  background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-primario-hover) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radio-md);
+  font-weight: 600;
+  font-size: var(--texto-base);
+  cursor: pointer;
+  transition: all var(--transicion-normal);
+  margin-top: var(--espaciado-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-sm);
+}
+
+.login-boton:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-primario-hover) 0%, var(--color-primario-oscuro) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+}
+
+.login-boton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-boton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-boton-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Mensajes */
+.login-mensaje {
+  margin-top: var(--espaciado-md);
+  padding: var(--espaciado-md);
+  border-radius: var(--radio-md);
+  font-size: var(--texto-sm);
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.login-mensaje.exito {
+  background: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.login-mensaje.error {
+  background: var(--color-error-fondo);
+  color: var(--color-error);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Footer del login */
+.login-footer {
+  margin-top: var(--espaciado-xl);
+  text-align: center;
+  padding-top: var(--espaciado-md);
+  border-top: 1px solid var(--color-borde);
+}
+
+.login-footer-texto {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-muted);
+  margin: 0;
+}
+
+.login-footer-marca {
+  font-size: var(--texto-sm);
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+/* Información del dominio */
+.login-dominio-info {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  font-size: var(--texto-xs);
+  color: var(--color-texto-muted);
+  margin-top: var(--espaciado-xs);
+}
+
+.login-dominio-info svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Móvil pequeño (hasta 480px) */
+@media (max-width: 480px) {
+  .login-contenedor {
+    padding: var(--espaciado-md);
+    align-items: flex-start;
+    padding-top: 10vh;
+  }
+
+  .login-card {
+    padding: var(--espaciado-lg);
+    border-radius: var(--radio-lg);
+  }
+
+  .login-logo {
+    width: 64px;
+    height: 64px;
+    font-size: 2rem;
+  }
+
+  .login-card h2 {
+    font-size: var(--texto-xl);
+  }
+
+  .login-input {
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    padding-left: calc(var(--espaciado-md) * 2 + 1rem);
+    font-size: var(--texto-sm);
+  }
+
+  .login-boton {
+    padding: var(--espaciado-sm) var(--espaciado-md);
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-contenedor {
+    padding: var(--espaciado-lg);
+  }
+
+  .login-card {
+    max-width: 400px;
+  }
+}
+
+/* Landscape en móvil */
+@media (max-height: 500px) and (orientation: landscape) {
+  .login-contenedor {
+    padding: var(--espaciado-md);
+    align-items: flex-start;
+  }
+
+  .login-card {
+    padding: var(--espaciado-md);
+  }
+
+  .login-logo {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    margin-bottom: var(--espaciado-sm);
+  }
+
+  .login-header {
+    margin-bottom: var(--espaciado-md);
+  }
+
+  .login-card h2 {
+    font-size: var(--texto-lg);
+    margin-bottom: var(--espaciado-xs);
+  }
+
+  .login-form {
+    gap: var(--espaciado-sm);
+  }
+
+  .login-boton {
+    margin-top: var(--espaciado-xs);
+  }
+
+  .login-footer {
+    margin-top: var(--espaciado-md);
+    padding-top: var(--espaciado-sm);
+  }
+}
+
+/* ============================================
+   TÉRMINOS Y CONDICIONES - Checkbox
+   ============================================ */
+
+.login-terminos-wrapper {
+  margin-top: var(--espaciado-xs);
+}
+
+.login-terminos-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaciado-sm);
+  cursor: pointer;
+  position: relative;
+  padding-left: 32px;
+  min-height: 24px;
+  line-height: 1.5;
+}
+
+.login-terminos-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.login-terminos-checkmark {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-borde-input);
+  border-radius: var(--radio-sm);
+  background: var(--color-fondo-input);
+  transition: all var(--transicion-rapida);
+  flex-shrink: 0;
+}
+
+.login-terminos-checkbox:checked ~ .login-terminos-checkmark {
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.login-terminos-checkmark::after {
+  content: '';
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.login-terminos-checkbox:checked ~ .login-terminos-checkmark::after {
+  display: block;
+}
+
+.login-terminos-label:hover .login-terminos-checkmark {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.login-terminos-texto {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-secundario);
+  line-height: 1.5;
+}
+
+.login-terminos-link {
+  background: none;
+  border: none;
+  color: var(--color-primario);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+  padding: 0;
+  transition: color var(--transicion-rapida);
+}
+
+.login-terminos-link:hover {
+  color: var(--color-primario-hover);
+}
+
+/* ============================================
+   MODAL DE TÉRMINOS Y CONDICIONES
+   ============================================ */
+
+.terminos-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: var(--espaciado-md);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.terminos-modal {
+  background: var(--color-fondo-card);
+  border-radius: var(--radio-xl);
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-borde);
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.terminos-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaciado-lg);
+  border-bottom: 1px solid var(--color-borde);
+  flex-shrink: 0;
+}
+
+.terminos-modal-header h3 {
+  margin: 0;
+  font-size: var(--texto-lg);
+  color: var(--color-texto);
+  display: flex;
+  align-items: center;
+}
+
+.terminos-modal-close {
+  background: none;
+  border: none;
+  color: var(--color-texto-muted);
+  cursor: pointer;
+  padding: var(--espaciado-xs);
+  border-radius: var(--radio-md);
+  transition: all var(--transicion-rapida);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terminos-modal-close:hover {
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+.terminos-modal-body {
+  padding: var(--espaciado-lg);
+  overflow-y: auto;
+  flex: 1;
+  line-height: 1.7;
+}
+
+.terminos-modal-body h4 {
+  color: var(--color-texto);
+  font-size: var(--texto-base);
+  margin: var(--espaciado-lg) 0 var(--espaciado-sm) 0;
+  font-weight: 600;
+}
+
+.terminos-modal-body h4:first-child {
+  margin-top: 0;
+}
+
+.terminos-modal-body p {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+  margin: 0 0 var(--espaciado-sm) 0;
+}
+
+.terminos-modal-body ul {
+  padding-left: var(--espaciado-lg);
+  margin: var(--espaciado-sm) 0;
+}
+
+.terminos-modal-body li {
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-sm);
+  margin-bottom: var(--espaciado-xs);
+  line-height: 1.6;
+}
+
+.terminos-advertencia {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaciado-sm);
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radio-md);
+  padding: var(--espaciado-md);
+  margin-top: var(--espaciado-lg);
+}
+
+.terminos-advertencia .material-symbols-outlined {
+  color: #f59e0b;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.terminos-advertencia p {
+  color: #b45309;
+  font-size: var(--texto-sm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.terminos-modal-footer {
+  padding: var(--espaciado-md) var(--espaciado-lg);
+  border-top: 1px solid var(--color-borde);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.terminos-modal-footer .login-boton {
+  margin-top: 0;
+}
+
+.terminos-modal-footer .btn-texto {
+  text-align: center;
+  font-size: var(--texto-sm);
+}
+
+/* Date input styling */
+.login-input[type="date"] {
+  padding-left: calc(var(--espaciado-md) * 2 + 1.1rem);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.login-input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+  cursor: pointer;
+}
+
+/* ============================================
+   RESPONSIVE - Términos y Modal
+   ============================================ */
+
+@media (max-width: 480px) {
+  .terminos-overlay {
+    padding: var(--espaciado-sm);
+    align-items: flex-end;
+  }
+
+  .terminos-modal {
+    max-height: 90vh;
+    border-radius: var(--radio-lg) var(--radio-lg) 0 0;
+  }
+
+  .terminos-modal-header {
+    padding: var(--espaciado-md);
+  }
+
+  .terminos-modal-body {
+    padding: var(--espaciado-md);
+  }
+
+  .terminos-modal-footer {
+    padding: var(--espaciado-md);
+  }
+
+  .login-terminos-texto {
+    font-size: var(--texto-xs);
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .terminos-modal {
+    max-height: 90vh;
+  }
+}

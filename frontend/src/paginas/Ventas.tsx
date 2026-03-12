@@ -7,7 +7,6 @@ import "../estilos/pos.css";
 import { esAdmin, esOperador, esSupervisor } from "../contextos/sesion";
 import {
   formatearDinero,
-  validarCantidad,
   validarStockDisponible,
   validarNombre
 } from "../helpers/validaciones";
@@ -124,7 +123,6 @@ const Ventas = ({ volver }: { volver: () => void }) => {
   // Formulario de venta
   const [idCliente, setIdCliente] = useState<number>(0);
   const [idProducto, setIdProducto] = useState<number>(0);
-  const [cantidad, setCantidad] = useState<number>(1);
   const [metodoPago, setMetodoPago] = useState<MetodoPago>("efectivo");
   const [busquedaProducto, setBusquedaProducto] = useState("");
   const [filtroCategoria, setFiltroCategoria] = useState<number | "todas">("todas");

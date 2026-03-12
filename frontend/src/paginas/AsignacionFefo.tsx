@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import api from "../api/api";
 import { obtenerToken } from "../api/autenticacion";
-import { esOperador, esAdmin } from "../contextos/sesion";
+import { esOperador } from "../contextos/sesion";
 import "./AsignacionFefo.css";
 
 type Producto = {

@@ -115,7 +115,6 @@ const Ventas = ({ volver }: { volver: () => void }) => {
   const [ventas, setVentas] = useState<Venta[]>([]);
   const [detalleVenta, setDetalleVenta] = useState<VentaDetalle | null>(null);
   const [comprasCliente, setComprasCliente] = useState<CompraCliente[]>([]);
-  const [cargandoCliente, setCargandoCliente] = useState(false);
 
   const [cargando, setCargando] = useState(true);
   const [mensaje, setMensaje] = useState("");
@@ -163,7 +162,7 @@ const Ventas = ({ volver }: { volver: () => void }) => {
     }
 
     if (filtroCategoria !== "todas") {
-      lista = lista.filter(p => p.id_categoria === filtroCategoria || p.id_categoria.toString() === filtroCategoria.toString());
+      lista = lista.filter(p => p.id_categoria?.toString() === filtroCategoria.toString());
     }
 
     return lista;
@@ -220,14 +219,11 @@ const Ventas = ({ volver }: { volver: () => void }) => {
       return;
     }
 
-    setCargandoCliente(true);
     try {
       const resp = await api.get(`/clientes/${id}/compras`, { headers });
       setComprasCliente(resp.data.compras || []);
     } catch {
       setComprasCliente([]);
-    } finally {
-      setCargandoCliente(false);
     }
   }, [headers]);
 
@@ -274,86 +270,6 @@ const Ventas = ({ volver }: { volver: () => void }) => {
     cargarComprasCliente(idCliente);
   }, [idCliente, cargarComprasCliente]);
 
-  // Agregar producto al carrito
-  const agregarAlCarrito = () => {
-    setMensaje("");
-
-    if (!puedeRegistrar) {
-      mostrarMensajeUI("No tienes permisos para registrar ventas", "error");
-      return;
-    }
-
-    if (!idProducto) {
-      mostrarMensajeUI("Selecciona un producto", "advertencia");
-      return;
-    }
-
-    // Validar cantidad
-    const validacionCantidad = validarCantidad(cantidad, 1, 9999);
-    if (!validacionCantidad.valido) {
-      mostrarMensajeUI(validacionCantidad.mensaje!, "advertencia");
-      return;
-    }
-
-    const prod = productos.find((p) => p.id_producto === idProducto);
-    if (!prod) {
-      mostrarMensajeUI("Producto no encontrado", "error");
-      return;
-    }
-
-    if (!prod.activo) {
-      mostrarMensajeUI("Este producto está inactivo y no se puede vender", "advertencia");
-      return;
-    }
-
-    // Calcular cantidad ya en carrito
-    const enCarrito = carrito.find(x => x.id_producto === prod.id_producto);
-    const cantidadEnCarrito = enCarrito ? enCarrito.cantidad : 0;
-    const cantidadTotal = cantidadEnCarrito + cantidad;
-
-    // Validar stock disponible
-    const validacionStock = validarStockDisponible(prod.stock, cantidadTotal);
-    if (!validacionStock.valido) {
-      mostrarMensajeUI(validacionStock.mensaje!, "advertencia");
-      return;
-    }
-
-    const precioNum = Number(prod.precio);
-    if (isNaN(precioNum) || precioNum <= 0) {
-      mostrarMensajeUI("El producto tiene un precio inválido", "error");
-      return;
-    }
-
-    setCarrito((prev) => {
-      const idx = prev.findIndex((x) => x.id_producto === prod.id_producto);
-
-      if (idx >= 0) {
-        // Actualizar cantidad existente
-        const copia = [...prev];
-        copia[idx] = {
-          ...copia[idx],
-          cantidad: cantidadTotal,
-          subtotal: cantidadTotal * copia[idx].precio,
-        };
-        return copia;
-      }
-
-      // Agregar nuevo item
-      return [...prev, {
-        id_producto: prod.id_producto,
-        nombre: prod.nombre,
-        cantidad,
-        precio: precioNum,
-        subtotal: cantidad * precioNum,
-        stock_disponible: prod.stock,
-        imagen: prod.imagen || null,
-      }];
-    });
-
-    setCantidad(1);
-    setBusquedaProducto("");
-    mostrarMensajeUI(`${prod.nombre} agregado al carrito`, "exito");
-  };
 
   const seleccionarYAgregar = (id: number) => {
     // Esta función selecciona un producto y lo agrega con cantidad 1 inmediatamente

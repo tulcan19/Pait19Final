@@ -27,6 +27,7 @@ export interface Categoria {
     imagen: string | null;
     total_productos: number;
     subcategorias?: { id_subcategoria: number; nombre_final: string }[];
+    activo?: boolean;
 }
 
 export interface ProductosResponse {

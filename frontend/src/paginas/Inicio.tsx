@@ -7,6 +7,7 @@ import {
   type Producto,
   type Categoria,
   type ConfiguracionTienda,
+  type SlideConfig,
 } from '../api/tienda';
 import './Inicio.css';
 import { obtenerUsuario } from '../contextos/sesion';

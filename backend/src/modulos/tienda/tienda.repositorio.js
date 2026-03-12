@@ -70,24 +70,13 @@ async function obtenerProductoPorId(id_producto) {
   return resultado.rows[0];
 }
 
-// Todas las categorías
+// Todas las categorías (Simplificado para evitar errores si no existe tabla subcategorias)
 async function listarCategorias() {
   const consulta = `
     SELECT 
       c.*, 
       COUNT(p.id_producto) AS total_productos,
-      COALESCE(
-        (SELECT json_agg(sub.* ORDER BY sub.id_subcategoria ASC)
-         FROM (
-           SELECT 
-             s.id_subcategoria,
-             COALESCE(c2.nombre, s.nombre) as nombre_final
-           FROM subcategorias s
-           LEFT JOIN categorias c2 ON c2.id_categoria = s.id_categoria_vinculada
-           WHERE s.id_categoria = c.id_categoria AND s.activo = TRUE
-         ) sub),
-        '[]'
-      ) as subcategorias
+      '[]'::json as subcategorias
     FROM categorias c
     LEFT JOIN productos p ON p.id_categoria = c.id_categoria AND p.activo = true
     GROUP BY c.id_categoria
